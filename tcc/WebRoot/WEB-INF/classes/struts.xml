@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC   
+     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"   
+     "http://struts.apache.org/dtds/struts-2.0.dtd">
+     
+     
+<struts>
+    <package name="liu" extends="struts-default">
+        <global-results>
+            <result name="succeed">/common/succeed.jsp</result>
+            <result name="msg">/common/msg.jsp</result>
+        </global-results>
+        
+        <action name="upload" class="com.util.upload" method="upload">
+             <result name="success">/upload/upload_re.jsp</result>
+        </action>
+        
+        
+        <action name="adminAdd" class="adminAction" method="adminAdd">
+        </action>
+        <action name="adminDel" class="adminAction" method="adminDel">
+        </action>
+        <action name="adminManage" class="adminAction" method="adminManage">
+            <result name="success">/admin/index/adminManage.jsp</result>
+        </action>
+        
+        
+        
+        <action name="caozuoyuanAdd" class="caozuoyuanAction" method="caozuoyuanAdd">
+        </action>
+        <action name="caozuoyuanDel" class="caozuoyuanAction" method="caozuoyuanDel">
+        </action>
+        <action name="caozuoyuanMana" class="caozuoyuanAction" method="caozuoyuanMana">
+            <result name="success">/admin/caozuoyuan/caozuoyuanMana.jsp</result>
+        </action>
+        <action name="caozuoyuanEdit_ziji" class="caozuoyuanAction" method="caozuoyuanEdit_ziji">
+        </action>
+        
+        
+        
+        <action name="cardAdd" class="cardAction" method="cardAdd">
+        </action>
+        <action name="cardDel" class="cardAction" method="cardDel">
+        </action>
+        <action name="cardMana" class="cardAction" method="cardMana">
+            <result name="success">/admin/card/cardMana.jsp</result>
+        </action>
+        <action name="cardAll" class="cardAction" method="cardAll">
+            <result name="success">/admin/card/cardAll.jsp</result>
+        </action>
+        
+        
+        <action name="ruchangAdd" class="ruchangAction" method="ruchangAdd">
+        </action>
+        <action name="chuchangMana" class="ruchangAction" method="chuchangMana">
+            <result name="success">/admin/chuchang/chuchangMana.jsp</result>
+        </action>
+        <action name="che_chuchang" class="ruchangAction" method="che_chuchang">
+            <result name="success">/admin/chuchang/che_chuchang.jsp</result>
+        </action>
+        <action name="tingche_jilu" class="ruchangAction" method="tingche_jilu">
+            <result name="success">/admin/chuchang/tingche_jilu.jsp</result>
+        </action>
+        <action name="tingche_tongji" class="ruchangAction" method="tingche_tongji">
+            <result name="success">/admin/chuchang/tingche_tongji.jsp</result>
+        </action>
+        <action name="tingche_daochu" class="ruchangAction" method="tingche_daochu">
+            <result name="success">/updown/daochuExc.jsp</result>
+        </action>
+    </package>
+</struts>

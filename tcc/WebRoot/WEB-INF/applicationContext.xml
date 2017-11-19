@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/db_tcc?useUnicode=true&amp;amp;amp;amp;amp;amp;characterEncoding=utf-8">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/model/TAdmin.hbm.xml</value>
+				<value>com/model/TCaozuoyuan.hbm.xml</value>
+				<value>com/model/TCard.hbm.xml</value>
+				<value>com/model/TRuchang.hbm.xml</value></list>
+		</property>
+	</bean>
+	
+	
+	<bean id="loginService" class="com.service.loginService">
+		<property name="adminDAO">
+			<ref bean="TAdminDAO" />
+		</property>
+		<property name="caozuoyuanDAO">
+			<ref bean="TCaozuoyuanDAO" />
+		</property>
+		<property name="ruchangDAO">
+			<ref bean="TRuchangDAO" />
+		</property>
+	</bean>
+	
+	
+	
+	<bean id="TAdminDAO" class="com.dao.TAdminDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="adminAction" class="com.action.adminAction" scope="prototype">
+		<property name="adminDAO">
+			<ref bean="TAdminDAO" />
+		</property>
+	</bean>
+	
+	
+	
+	<bean id="TCaozuoyuanDAO" class="com.dao.TCaozuoyuanDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="caozuoyuanAction" class="com.action.caozuoyuanAction" scope="prototype">
+		<property name="caozuoyuanDAO">
+			<ref bean="TCaozuoyuanDAO" />
+		</property>
+	</bean>
+	
+	
+	<bean id="TCardDAO" class="com.dao.TCardDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"></ref>
+		</property>
+	</bean>
+	<bean id="cardAction" class="com.action.cardAction" scope="prototype">
+		<property name="cardDAO">
+			<ref bean="TCardDAO" />
+		</property>
+	</bean>
+	
+	
+	<bean id="TRuchangDAO" class="com.dao.TRuchangDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ruchangAction" class="com.action.ruchangAction" scope="prototype">
+		<property name="ruchangDAO">
+			<ref bean="TRuchangDAO" />
+		</property>
+		<property name="cardDAO">
+			<ref bean="TCardDAO" />
+		</property>
+	</bean>
+	</beans>
